@@ -1,2 +1,2 @@
 # IVAH_release
-Official PyTorch implementation of "Invisible-region Augmented Human Rendering", MTA
+Official PyTorch implementation of "IVAH: Invisible-Region Augmented Human Rendering from Monocular Images"
