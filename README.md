@@ -64,18 +64,18 @@ root
   └── experiments
       ├── humman
       │   └── full_model
-              ├── <yaml file>
+      │       ├── <yaml file>
       │       └── <ckpt file(.tar)>
       ├── renderpeople
       │   ├── full_model
-              ├── <yaml file>
+      │       ├── <yaml file>
       │       └── <ckpt file(.tar)>
       ├── thuman1
       │   └── full_model
-              ├── <yaml file>
+      │       ├── <yaml file>
       │       └── <ckpt file(.tar)>
       └── thuman2
           └── full_model
               ├── <yaml file>
-      │       └── <ckpt file(.tar)>
+              └── <ckpt file(.tar)>
 ```
