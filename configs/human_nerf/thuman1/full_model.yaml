@@ -1,6 +1,6 @@
 category: human_nerf
 db: 'thuman1'
-experiment: 'ivah_thuman1'
+experiment: 'full_model'
 comment: >
   ''
 
@@ -8,7 +8,7 @@ comment: >
 ## module on/off
 append_rgb: true
 back_net:
-  pretrained: 'back_generator_ckpts/thuman1/weights/OurBaseColorNet-060.pth'
+  pretrained: 'back_generator_ckpts/thuman1/weights/thuman1_backnet_060.pth'
   back_net_on: true
   load_pretrained: true
 random_pose_training: false

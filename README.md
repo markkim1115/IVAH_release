@@ -31,39 +31,51 @@ pip install -r requirements.txt
 
 ### 4. Download pre-trained weights of BackNet and IVAH
 
-I will provide you download link as soon as possible!
+Download pre-trained weights from below link:
+https://www.dropbox.com/scl/fo/gzthflt7klqzjtiaxnvgn/AHAXkJSsEG0l57uiEPLT3d8?rlkey=mch033t1qsqobwlcry33btz6t&st=2su67umf&dl=0
 
 ### 5. Put downloaded weights in correct paths
 
 * Put downloaded BackNet weights in back_generator_ckpts like below:
-.
-├── back_generator_ckpts
-│   ├── humman
-│   │   ├── val_results_humman.txt
-│   │   └── weights
-│   │       ├── GNR-model-snapshot-0080.txt
-│   │       └── humman_backnet_OurBaseColorNet-060.pth
-│   ├── renderpeople
-│   │   ├── val_results_RenderPeople.txt
-│   │   └── weights
-│   │       └── OurBaseColorNet-040.pth
-│   ├── thuman1
-│   │   ├── val_results_thuman1.txt
-│   │   └── weights
-│   │       └── OurBaseColorNet-060.pth
-│   └── thuman2
-│       ├── val_results_thuman2.txt
-│       └── weights
-│           ├── GNR-model-snapshot-0060.txt
-│           └── OurBaseColorNet-060.pth
-
+```
+root
+  └── back_generator_ckpts
+      ├── humman
+      │   ├── val_results_humman.txt
+      │   └── weights
+      │       ├── GNR-model-snapshot-0080.txt
+      │       └── humman_backnet_060.pth
+      ├── renderpeople
+      │   ├── val_results_RenderPeople.txt
+      │   └── weights
+      │       └── renderpeople_backnet_040.pth
+      ├── thuman1
+      │   ├── val_results_thuman1.txt
+      │   └── weights
+      │       └── thuman1_backnet_060.pth
+      └── thuman2
+          ├── val_results_thuman2.txt
+          └── weights
+              └── thuman2_backnet_060.pth
+```
 * Put downloaded trained IVAH checkpoints into the experiments directory like below:
-.
-├── humman
-│   └── full_model
-├── renderpeople
-│   ├── full_model
-├── thuman1
-│   └── full_model
-└── thuman2
-    └── full_model
+```
+root
+  └── experiments
+      ├── humman
+      │   └── full_model
+              ├── <yaml file>
+      │       └── <ckpt file(.tar)>
+      ├── renderpeople
+      │   ├── full_model
+              ├── <yaml file>
+      │       └── <ckpt file(.tar)>
+      ├── thuman1
+      │   └── full_model
+              ├── <yaml file>
+      │       └── <ckpt file(.tar)>
+      └── thuman2
+          └── full_model
+              ├── <yaml file>
+      │       └── <ckpt file(.tar)>
+```

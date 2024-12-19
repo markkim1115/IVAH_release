@@ -8,7 +8,7 @@ comment: >
 ## module on/off
 append_rgb: true
 back_net:
-  pretrained: 'back_generator_ckpts/renderpeople/weights/OurBaseColorNet-040.pth'
+  pretrained: 'back_generator_ckpts/renderpeople/weights/renderpeople_backnet_040.pth'
   back_net_on: true
   load_pretrained: true
 random_pose_training: false

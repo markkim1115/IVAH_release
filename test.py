@@ -7,6 +7,7 @@ from core.utils.train_util import set_requires_grad
 from core.utils.misc import count_parameters
 from configs import cfg, args
 import pdb
+import random
 
 def load_ckpt(model, path, device):
     print(f"Load checkpoint from {path} ...")
@@ -20,8 +21,11 @@ def main():
     cfg.novel_pose_test = args.novel_pose_test
     cfg.diff_angle_test = args.diff_angle_test
     
+    random.seed(5000)
     np.random.seed(5000)
     torch.manual_seed(100000)
+    torch.cuda.manual_seed(100000)
+    
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = create_network()
     model = model.to(device)

@@ -40,13 +40,11 @@ class Network(nn.Module):
         if cfg.back_net.back_net_on and not cfg.use_back_img_gt:
             
             with torch.no_grad():
-                if 'heatmap' in cfg.back_net.pretrained:
-                    if cfg.db != 'humman':
-                        back_net_input = torch.cat([data['inp_img_normed'],data['inp_heatmap'][None]], dim=1)
-                    else:
-                        back_net_input = torch.cat([data['inp_squared'], data['inp_heatmap'][None]], dim=1)
+                
+                if cfg.db != 'humman':
+                    back_net_input = torch.cat([data['inp_img_normed'],data['inp_heatmap'][None]], dim=1)
                 else:
-                    back_net_input = data['inp_img_normed']
+                    back_net_input = torch.cat([data['inp_squared'], data['inp_heatmap'][None]], dim=1)
                 
                 back_img = back_net(back_net_input)
 

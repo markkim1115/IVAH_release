@@ -1,6 +1,6 @@
 category: human_nerf
 db: 'thuman2'
-experiment: 'thuman2_full_model'
+experiment: 'full_model'
 comment: >
   ''
 
@@ -8,7 +8,7 @@ comment: >
 ## module on/off
 append_rgb: true
 back_net:
-  pretrained: 'back_generator_ckpts/thuman2_front_heatmap/weights/OurBaseColorNet-060.pth'
+  pretrained: 'back_generator_ckpts/thuman2/weights/thuman2_backnet_060.pth'
   back_net_on: true
   load_pretrained: true
 random_pose_training: false
@@ -17,23 +17,14 @@ model_class: 'implicit'
 motion_field: 'smpl'
 
 use_uv_inpainter: true
-use_smpl_2d_feature: false
 use_smpl_3d_feature: true
-vis_based_agg: 'mlp_for_inv'
 
 uv_map:
   uv_map_size: 256
-  sparse_uv_input: false
-  only_invisible_points: false
   uv_loss_on: true
   uv_l1_loss: true
   uv_lpips_loss: true
-  uv_adv_loss: false
 
-
-adv_loss: false
-clip_loss: false
-use_transformer: false
 alpha_act_fn: 'shifted-softplus' # relu or shifted-softplus
 rgb_act_fn: 'widened-sigmoid'
 
