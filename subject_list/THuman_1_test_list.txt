@@ -1,0 +1,10 @@
+results_gyx_20181015_gh_1_F
+results_gyx_20181015_gh_2_F
+results_gyx_20181015_gmx_1_F
+results_gyx_20181015_hyr_1_F
+results_gyx_20181015_hyr_2_F
+results_gyx_20181015_hzx_1_M
+results_gyx_20181015_hzx_2_M
+results_gyx_20181015_lyx_1_F
+results_gyx_20181015_scw_1_M
+results_gyx_20181015_scw_2_M

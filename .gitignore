@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+back_generator_ckpts/**
+dataset/**
+experiments
+SMPL_NEUTRAL.pkl
+third_parties/densepose

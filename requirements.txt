@@ -1,0 +1,12 @@
+pillow
+trimesh
+plotly
+joblib
+numpy==1.23.0
+scipy==1.10.1
+scikit-image==0.19.3
+scikit-learn==0.24.2
+opencv-python
+PyYAML
+spconv-cu113
+tqdm

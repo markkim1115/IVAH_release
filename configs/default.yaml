@@ -1,0 +1,165 @@
+category: 'human_nerf'
+
+##############################################3
+## Network Specs
+
+# modules
+network_module: 'core.nets.human_nerf.network'
+trainer_module: 'core.train.trainers.human_nerf.trainer'
+progress_module: 'core.train.progress.human_nerf.progress'
+lr_updater_module: 'core.train.trainers.human_nerf.lr_updaters.lr_decay'
+optimizer_module: 'core.train.optimizers.human_nerf.optimizer'
+
+# module on/off
+append_rgb: true
+
+use_back_img_gt: false
+
+back_net:
+  pretrained: 'back_generator_ckpts/mixed/weights/OurBaseColorNet-006.pth'
+  back_net_on: true
+  load_pretrained: true
+
+model_class: 'implicit'
+motion_field: 'smpl'
+
+random_pose_training: false
+no_pose_var_training: false
+use_uv_inpainter: true
+use_smpl_3d_feature: true
+
+uv_map:
+  uv_map_size: 256
+  uv_loss_on: true
+  uv_l1_loss: true
+  uv_lpips_loss: true
+
+  
+use_transformer: false
+
+rgb_act_fn: 'widened-sigmoid' # sigmoid or widened-sigmoid
+alpha_act_fn: 'shifted-softplus' # relu or shifted-softplus
+
+# image encoder
+image_enc:
+  backbone: 'resnet34'
+
+# positional embedder -- canonical mlp
+embedder:
+  module: "core.nets.human_nerf.embedders.fourier"
+
+# positional embedder -- non-rigid motion mlp
+non_rigid_embedder:
+  module: "core.nets.human_nerf.embedders.hannw_fourier"
+
+# canonical mlp
+canonical_mlp:
+  module: 'core.nets.human_nerf.canonical_mlps.mlp_rgb_sigma'
+  mlp_depth: 8         # layers in network
+  mlp_width: 256       # channels per layer
+  multires: 10         # log2 of max freq for positional encoding (3D location)
+  i_embed: 0           # set 0 for default positional encoding, -1 for none
+
+# motion weights volume
+mweight_volume:
+  module: 'core.nets.human_nerf.mweight_vol_decoders.deconv_vol_decoder'
+  embedding_size: 256
+  volume_size: 32
+motion_w_prior: 'bone_gaussian' # default of HumanNeRF is 'bone_gaussian'
+
+bone_std: [0.03, 0.06, 0.03]
+head_std: [0.06, 0.06, 0.06]
+joint_std: [0.02, 0.02, 0.02]
+
+##############################################3
+## Data Configuration
+
+train_keyfilter: ['rays', 'dst_posevec_69']
+test_keyfilter: ['rays', 'target_rgbs', 'dst_posevec_69']
+
+zju_mocap_dataset_path: 'dataset/zju_mocap'
+aist_dataset_path: 'dataset/aist'
+fashionvideo_dataset_path: 'dataset/fashionvideo'
+thuman_dataset_path: '/media/cv1/data/THuman/nerf_data_'
+thuman2_dataset_path: 'dataset/thuman2'
+renderpeople_dataset_path: 'dataset/RenderPeople'
+
+train:
+  perturb: 1.        # only for training, set to 0. for no jitter, 1. for jitter
+  batch_size: 1
+  shuffle: True
+  drop_last: False
+  ray_shoot_mode: 'image'
+  maxiter: 200000
+  lr: 0.0005  # 5e-4
+  lr_decay_rate: 0.5
+  lr_decay_steps: 100000
+  optimizer: 'adam'
+
+  log_interval: 20
+  
+  # Intermediate validation settings
+  fast_validation: true
+  val_iter: 20000
+  
+  lossweights:
+    lpips: 1.0
+    mse: 1.0
+    mask: 1.0
+    ssim: 1.0
+
+test:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+
+progress:
+  test_obs_view_list: [0,160,310]
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+  dump_interval: 2000
+  maxframes: 16
+
+movement:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+
+freeview:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+  frame_idx: 0
+
+tpose:
+  batch_size: 1
+  shuffle: False
+  drop_last: False
+
+
+##############################################3
+## Misc
+
+sex: 'neutral'
+total_bones: 24
+bbox_offset: 0.3
+
+load_net: latest
+save_all: True    # save all checkpoints
+
+patch:
+  sample_subject_ratio: 0.8
+  N_patches: 6 # default 6
+  size: 32      # [Patch] size of patch # default 32
+
+N_samples: 128      # number of samples for each ray in coarse ray matching # default 128
+
+perturb: 1.        # only for training, set to 0. for no jitter, 1. for jitter
+
+netchunk_per_gpu: 300000 # number of pts sent through network in parallel, decrease if running out of memory
+chunk: 32768   # 32768=1024*32, number of rays processed in parallel, decrease if running out of memory
+n_gpus: 1
+
+show_alpha: False  
+show_truth: False
