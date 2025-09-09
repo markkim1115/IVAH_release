@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 python train.py --cfg configs/human_nerf/renderpeople/full_model.yaml

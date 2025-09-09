@@ -1,0 +1,9 @@
+{
+  "view_num": 360,
+  "cam_f": 5000,
+  "cam_dist": 10,
+  "img_res": 512,
+  "focal": 5000,
+  "near": 0.1,
+  "far": 40
+}

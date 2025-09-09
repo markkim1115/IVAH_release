@@ -1,0 +1,7 @@
+{
+  "num_sample_surface": 400000,
+  "num_sample_uniform": 25000,
+  "sigma": 0.025,
+  "sigma_small": 0.01,
+  "curve_thresh": 0.004
+}

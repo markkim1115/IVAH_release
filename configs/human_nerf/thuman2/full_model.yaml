@@ -1,0 +1,78 @@
+category: human_nerf
+db: 'thuman2'
+experiment: 'full_model'
+comment: >
+  ''
+
+## Network Configuration
+## module on/off
+append_rgb: true
+back_net:
+  pretrained: 'back_generator_ckpts/thuman2/weights/thuman2_backnet_060.pth'
+  back_net_on: true
+  load_pretrained: true
+random_pose_training: false
+
+model_class: 'implicit'
+motion_field: 'smpl'
+
+use_uv_inpainter: true
+use_smpl_3d_feature: true
+
+uv_map:
+  uv_map_size: 256
+  uv_loss_on: true
+  uv_l1_loss: true
+  uv_lpips_loss: true
+
+alpha_act_fn: 'shifted-softplus' # relu or shifted-softplus
+rgb_act_fn: 'widened-sigmoid'
+
+# image encoder
+image_enc:
+  backbone: 'resnet34'
+
+# canonical mlp
+canonical_mlp:
+  module: 'core.nets.human_nerf.canonical_mlps.mlp_mps_nerf'
+
+## Data Configuration
+load_pretrained: false
+pretrained: ''
+
+train:
+  dataset_module: 'core.data.human_nerf.loader_thuman2'
+  ray_shoot_mode: 'patch'
+  maxiter: 600000
+  lr: 0.0001
+  val_iter: 20000
+  
+  lossweights:
+    lpips: 1.0
+    mse: 1.0
+    mask: 1.0
+    ssim: 1.0
+progress:
+  maxframes: 20
+  dataset_module: 'core.data.human_nerf.loader_thuman2'
+
+movement:
+  dataset_module: 'core.data.human_nerf.loader_thuman2'
+
+freeview:
+  dataset_module: 'core.data.human_nerf.freeview'
+
+tpose:
+  dataset_module: 'core.data.human_nerf.tpose'
+
+num_workers: 4
+bgcolor: [0., 0., 0.]
+resize_img_scale: 1
+N_samples: 64
+chunk: 6144
+netchunk_per_gpu: 600000 # 1024 * 64
+
+patch:
+  sample_subject_ratio: 0.9
+  size: 32
+  N_patches: 8

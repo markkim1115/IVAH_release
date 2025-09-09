@@ -1,0 +1,87 @@
+category: human_nerf
+db: 'itw'
+experiment: 'itw_humman_ckpt'
+comment: >
+  ''
+
+## Network Configuration
+## module on/off
+append_rgb: true
+back_net:
+  pretrained: 'back_generator_ckpts/humman_front_heatmap_only/weights/humman_backnet_OurBaseColorNet-060.pth'
+  back_net_on: true
+  load_pretrained: true
+random_pose_training: false
+
+model_class: 'implicit'
+motion_field: 'smpl'
+
+use_uv_inpainter: true
+use_smpl_2d_feature: false
+use_smpl_3d_feature: true
+vis_based_agg: 'mlp_for_inv'
+uv_map:
+  uv_map_size: 256
+  sparse_uv_input: false
+  only_invisible_points: false
+  uv_loss_on: true
+  uv_l1_loss: true
+  uv_lpips_loss: true
+  uv_adv_loss: false
+
+
+adv_loss: false
+clip_loss: false
+use_transformer: false
+alpha_act_fn: 'shifted-softplus' # relu or shifted-softplus
+rgb_act_fn: 'widened-sigmoid'
+
+# image encoder
+image_enc:
+  backbone: 'resnet34'
+
+# canonical mlp
+canonical_mlp:
+  module: 'core.nets.human_nerf.canonical_mlps.mlp_mps_nerf'
+
+## Data Configuration
+load_pretrained: false
+pretrained: ''
+
+train:
+  dataset_module: 'core.data.human_nerf.loader_itw'
+  ray_shoot_mode: 'patch'
+  maxiter: 800000
+  lr: 0.0001
+  val_iter: 20000
+  
+  lossweights:
+    lpips: 1.0
+    mse: 1.0
+    mask: 1.0
+    ssim: 1.0
+progress:
+  maxframes: 20
+  dataset_module: 'core.data.human_nerf.loader_itw'
+
+movement:
+  dataset_module: 'core.data.human_nerf.loader_itw'
+
+freeview:
+  dataset_module: 'core.data.human_nerf.freeview'
+
+tpose:
+  dataset_module: 'core.data.human_nerf.tpose'
+
+num_workers: 0
+bgcolor: [0., 0., 0.]
+resize_img_scale: 1.0
+N_samples: 64
+chunk: 6144
+netchunk_per_gpu: 800000 # 1024 * 64
+bbox_offset: 0.4
+
+patch:
+  sample_subject_ratio: 0.9
+  size: 32
+  N_patches: 8
