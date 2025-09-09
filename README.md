@@ -5,6 +5,7 @@ Official PyTorch implementation of "IVAH: Invisible-Region Augmented Human Rende
 <p align="center">
     <img src="assets/itw_example.jpg" width="700px"/>
 </p>
+
 ## Hardware Requirements
 IVAH is trained and tested on an RTX A6000 GPU. We recommend using a GPU with more than 24GB of memory to train the model.
 
