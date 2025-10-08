@@ -1,5 +1,6 @@
-# IVAH_release
+# IVAH: Invisible-Region Augmented Human Rendering from Monocular Images
 Official PyTorch implementation of "IVAH: Invisible-Region Augmented Human Rendering from Monocular Images (IEEE Access, 2025)"
+[[PDF]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11192415)
 <!-- ![itw](assets/itw_example.png) -->
 
 <p align="center">
